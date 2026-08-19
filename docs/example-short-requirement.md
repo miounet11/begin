@@ -14,3 +14,7 @@
 - 级别：L0，升级到期日由 owner 填。
 
 不合格：把「Win + Mac + iOS + Android + 会员 + 100% 复刻竞品」写进做成。那是通道愿望，不是做成。
+
+---
+
+**完整方案制定示例**见 [example-formulation.md](./example-formulation.md)，演示从短做成到开工包的全流程。

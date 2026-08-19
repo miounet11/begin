@@ -5,6 +5,7 @@
 | 问题 | 权威 |
 |------|------|
 | 新产品从短需求怎么开工、给执行面的第一份合同 | **本仓** |
+| 方案怎么被系统制定成合同（竞品扫描、技术选型、开工包） | **本仓** [practices/formulate.md](./practices/formulate.md) |
 | 为什么会不高质量、十二条铁律、成熟度规则、豁免规则 | [build-standard SCHEME](https://github.com/miounet11/build-standard/blob/main/SCHEME.md) |
 | 七步怎么执行、人与 Agent 分工、仓库记忆、最小变绿 | [build-standard practices](https://github.com/miounet11/build-standard/tree/main/practices) |
 | 能不能上线：门禁 id / stage / severity / 是否可豁免 | [ship-standard](https://github.com/miounet11/ship-standard) [`gates.json`](https://github.com/miounet11/ship-standard/blob/main/gates.json) |
