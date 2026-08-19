@@ -1,6 +1,6 @@
 {
   "name": "begin",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "question": "新产品从一句短需求怎么开工，才能按家族标准长成顶级成品。",
   "family": {
     "create": "https://github.com/miounet11/build-standard",
