@@ -11,16 +11,28 @@
 
 | 文档 | 回答 |
 |------|------|
+| [USAGE.md](./USAGE.md) | **日常怎么用家族（三种模式 A/B/C）** |
 | [AGENTS.md](./AGENTS.md) | 执行面（Agent / TUI / CLI）必读：准做什么、禁做什么、做成怎么认 |
 | [PLAYBOOK.md](./PLAYBOOK.md) | 短需求 → L0 → L3 的顺序 |
 | [FAMILY.md](./FAMILY.md) | 一问一仓。禁止把四本标准抄进产品仓 |
 | [practices/formulate.md](./practices/formulate.md) | 方案制定：owner 给短做成 → 产出填好的合同 |
-| [templates/](./templates/) | 可复制进产品仓的空合同与开工信 |
+| [templates/](./templates/) | 可复制进产品仓的空合同与开工信（含 `product-AGENTS.md`） |
+| [mcp/](./mcp/) | 可选 family-router MCP（仅查询，不替代正文） |
 | [product/](./product/) | 本仓自己的空合同（示范，不是某个产品） |
 
 ---
 
 ## 30 秒开工
+
+先看 **[USAGE.md](./USAGE.md)** 了解三种使用模式（新产品 / 已有产品仓 / MCP）。
+
+| 模式 | 做什么 |
+|------|--------|
+| A 新产品 | 只发本仓链接，执行面跑 formulate → 产出开工包 |
+| B 已有产品仓 | 抄 `templates/product-AGENTS.md` 到产品仓根目录，不再贴家族链接 |
+| C MCP | 可选 `mcp/family-router.mjs`，仅查询，不替代正文 |
+
+详细步骤：
 
 1. 读 [AGENTS.md](./AGENTS.md)。
 2. owner 给出一句话做成 → 跑 [practices/formulate.md](./practices/formulate.md)，产出开工包。

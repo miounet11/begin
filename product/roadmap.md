@@ -15,7 +15,8 @@
 | M1 | 开工入口可读 | AGENTS / PLAYBOOK / FAMILY / templates 齐，权威表指向四仓 | `DOC-2` | done |
 | M2 | 空合同可抄 | 产品仓抄 templates/ 后五件空位可见 | `COMPOUND-2` | done |
 | M3 | 方案可被系统制定 | 给一句短做成，执行面跑 formulate.md 能产出：填好的合同、竞品扫描、技术选型、开工信 | `COMPOUND-2` | done |
-| M4 | 真产品填进合同 | 第一个客户产品用本仓开工（含方案制定），STATUS 能生成 | `PROBE-1` | 未开始 |
+| M4 | 家族单入口 | USAGE.md + templates/product-AGENTS.md + 可选 family-router MCP，owner 不再需要贴 6 个链接 | `COMPOUND-2` | done |
+| M5 | 真产品填进合同 | 第一个客户产品用本仓开工（含方案制定），STATUS 能生成 | `PROBE-1` | 未开始 |
 
 ## 本季度明确不做
 

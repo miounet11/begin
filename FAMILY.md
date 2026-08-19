@@ -4,6 +4,7 @@
 
 | 问题 | 权威 |
 |------|------|
+| **日常怎么用家族（三种模式）** | [USAGE.md](./USAGE.md) |
 | 新产品从短需求怎么开工、给执行面的第一份合同 | **本仓** |
 | 方案怎么被系统制定成合同（竞品扫描、技术选型、开工包） | **本仓** [practices/formulate.md](./practices/formulate.md) |
 | 为什么会不高质量、十二条铁律、成熟度规则、豁免规则 | [build-standard SCHEME](https://github.com/miounet11/build-standard/blob/main/SCHEME.md) |
