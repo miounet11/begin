@@ -24,6 +24,19 @@ https://github.com/miounet11/begin
 
 之后打开产品仓即可，**不要再贴任何家族链接**。产品仓 AGENTS.md 只链 begin + FAMILY，需要时由执行面自己打开对应权威仓。
 
+**模板复制说明**（一次性）：
+
+```
+templates/tech-options.md   → product/tech-decision.md（填写后改名）
+templates/competitors.md    → product/competitors.md
+templates/agent-brief.md    → agent-brief.md（根目录）
+templates/product-README.md → product/README.md
+templates/roadmap.md        → product/roadmap.md
+templates/quality-gates.md  → product/quality-gates.md
+templates/risks.md          → product/risks.md
+templates/waivers.md        → product/waivers.md
+```
+
 ### C. Cursor 可选 MCP（仅查询）
 
 一个路由器，不是六套标准 MCP。见 [mcp/README.md](./mcp/README.md)。

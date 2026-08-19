@@ -39,31 +39,98 @@ async function fetchWithCache(url) {
   return data;
 }
 
-const FAMILY_MAP = {
-  repos: [
-    { repo: 'begin', question: '新产品怎么开工 / 给执行面的第一份合同', url: 'https://github.com/miounet11/begin' },
-    { repo: 'begin', question: '方案怎么被系统制定成合同', url: 'https://github.com/miounet11/begin', path: 'practices/formulate.md' },
-    { repo: 'build-standard', question: '怎么创建（七步）/ 成熟度规则', url: 'https://github.com/miounet11/build-standard' },
-    { repo: 'ship-standard', question: '能不能上线 / 门禁 id / stage / severity', url: 'https://github.com/miounet11/ship-standard' },
-    { repo: 'creativity-is-engineering', question: '洞察有没有落成定律', url: 'https://github.com/miounet11/creativity-is-engineering' },
-    { repo: 'ability-harness', question: '这个模型能不能修交接本', url: 'https://github.com/miounet11/ability-harness' },
-    { repo: 'review-harness', question: '这轮迭代有没有漏审', url: 'https://github.com/miounet11/review-harness' },
+const REPO_QUESTIONS = {
+  begin: [
+    { question: '新产品怎么开工 / 给执行面的第一份合同', path: null },
+    { question: '方案怎么被系统制定成合同', path: 'practices/formulate.md' },
   ],
-  modes: {
-    A: {
-      name: '新产品（还没有产品仓）',
-      instruction: '只发 https://github.com/miounet11/begin 一个链接。执行面读 AGENTS.md → 跑 practices/formulate.md → 产出开工包。禁止同时贴另外五本全文。',
-    },
-    B: {
-      name: '已有产品仓（默认、推荐）',
-      instruction: '产品仓根目录放 AGENTS.md（抄 templates/product-AGENTS.md）。之后打开产品仓即可，不要再贴任何家族链接。',
-    },
-    C: {
-      name: 'Cursor 可选 MCP',
-      instruction: '一个路由器，不是六套标准 MCP。工具只做查询，正文仍以 GitHub 为准。',
-    },
+  'build-standard': [
+    { question: '怎么创建（七步）/ 成熟度规则', path: null },
+  ],
+  'ship-standard': [
+    { question: '能不能上线 / 门禁 id / stage / severity', path: null },
+  ],
+  'creativity-is-engineering': [
+    { question: '洞察有没有落成定律', path: null },
+  ],
+  'ability-harness': [
+    { question: '这个模型能不能修交接本', path: null },
+  ],
+  'review-harness': [
+    { question: '这轮迭代有没有漏审', path: null },
+  ],
+};
+
+const MODES = {
+  A: {
+    name: '新产品（还没有产品仓）',
+    instruction: '只发 https://github.com/miounet11/begin 一个链接。执行面读 AGENTS.md → 跑 practices/formulate.md → 产出开工包。禁止同时贴另外五本全文。',
+  },
+  B: {
+    name: '已有产品仓（默认、推荐）',
+    instruction: '产品仓根目录放 AGENTS.md（抄 templates/product-AGENTS.md）。之后打开产品仓即可，不要再贴任何家族链接。',
+  },
+  C: {
+    name: 'Cursor 可选 MCP',
+    instruction: '一个路由器，不是六套标准 MCP。工具只做查询，正文仍以 GitHub 为准。',
   },
 };
+
+async function buildFamilyMap() {
+  try {
+    const catalog = await fetchWithCache(CATALOG_URLS.begin);
+    const repos = [];
+    
+    repos.push({
+      repo: 'begin',
+      question: REPO_QUESTIONS.begin[0].question,
+      url: `https://github.com/miounet11/begin`,
+    });
+    repos.push({
+      repo: 'begin',
+      question: REPO_QUESTIONS.begin[1].question,
+      url: `https://github.com/miounet11/begin`,
+      path: REPO_QUESTIONS.begin[1].path,
+    });
+    
+    const familyMapping = {
+      create: 'build-standard',
+      ship: 'ship-standard',
+      create_law: 'creativity-is-engineering',
+      ability: 'ability-harness',
+      review: 'review-harness',
+    };
+    
+    for (const [key, repoName] of Object.entries(familyMapping)) {
+      const url = catalog.family?.[key];
+      if (url) {
+        const questions = REPO_QUESTIONS[repoName] || [];
+        for (const q of questions) {
+          repos.push({
+            repo: repoName,
+            question: q.question,
+            url,
+            ...(q.path ? { path: q.path } : {}),
+          });
+        }
+      }
+    }
+    
+    return { repos, modes: MODES };
+  } catch (e) {
+    return {
+      repos: Object.entries(REPO_QUESTIONS).flatMap(([repo, questions]) => 
+        questions.map(q => ({
+          repo,
+          question: q.question,
+          url: `https://github.com/miounet11/${repo}`,
+          ...(q.path ? { path: q.path } : {}),
+        }))
+      ),
+      modes: MODES,
+    };
+  }
+}
 
 const PACKET_CHECKLIST = [
   { file: 'product/README.md', required: ['一句话做成', '级别', '升级到期日', '主柱', '适用纬度'] },
@@ -108,25 +175,26 @@ const TOOLS = [
   },
 ];
 
-function matchRepo(question) {
+const KEYWORDS = {
+  'begin': ['开工', '合同', 'formulate', '制定', '开始', 'start', 'onboard', '产品仓', 'templates'],
+  'build-standard': ['七步', 'loop', '创建', 'build', 'scheme', '成熟度', 'maturity', 'l0', 'l1', 'l2', 'l3'],
+  'ship-standard': ['上线', 'ship', 'launch', '门禁', 'gate', 'preship', 'compound', 'path-', '发布', 'release'],
+  'creativity-is-engineering': ['洞察', 'insight', '定律', 'law', 'creativity', '创造'],
+  'ability-harness': ['模型', 'model', '交接本', 'handoff', 'ability', '能力', '评测'],
+  'review-harness': ['审查', 'review', '迭代', 'iteration', '漏审'],
+};
+
+function matchRepo(question, familyMap) {
   const q = question.toLowerCase();
-  const keywords = {
-    'begin': ['开工', '合同', 'formulate', '制定', '开始', 'start', 'onboard', '产品仓', 'templates'],
-    'build-standard': ['七步', 'loop', '创建', 'build', 'scheme', '成熟度', 'maturity', 'l0', 'l1', 'l2', 'l3'],
-    'ship-standard': ['上线', 'ship', 'launch', '门禁', 'gate', 'preship', 'compound', 'path-', '发布', 'release'],
-    'creativity-is-engineering': ['洞察', 'insight', '定律', 'law', 'creativity', '创造'],
-    'ability-harness': ['模型', 'model', '交接本', 'handoff', 'ability', '能力', '评测'],
-    'review-harness': ['审查', 'review', '迭代', 'iteration', '漏审'],
-  };
-  for (const [repo, kws] of Object.entries(keywords)) {
+  for (const [repo, kws] of Object.entries(KEYWORDS)) {
     for (const kw of kws) {
       if (q.includes(kw)) {
-        const entry = FAMILY_MAP.repos.find(r => r.repo === repo);
-        return entry || FAMILY_MAP.repos.find(r => r.repo === 'begin');
+        const entry = familyMap.repos.find(r => r.repo === repo);
+        return entry || familyMap.repos.find(r => r.repo === 'begin');
       }
     }
   }
-  return FAMILY_MAP.repos.find(r => r.repo === 'begin');
+  return familyMap.repos.find(r => r.repo === 'begin');
 }
 
 const NOT_ANSWERED_BY = {
@@ -139,11 +207,13 @@ const NOT_ANSWERED_BY = {
 };
 
 async function handleFamilyMap() {
-  return { repos: FAMILY_MAP.repos, modes: FAMILY_MAP.modes };
+  const familyMap = await buildFamilyMap();
+  return { repos: familyMap.repos, modes: familyMap.modes };
 }
 
 async function handleAuthorityFor(question) {
-  const match = matchRepo(question);
+  const familyMap = await buildFamilyMap();
+  const match = matchRepo(question, familyMap);
   return {
     repo: match.repo,
     url: match.url,
@@ -233,7 +303,7 @@ async function handleMessage(line) {
         sendResponse(id, {
           protocolVersion: '2024-11-05',
           capabilities: { tools: {} },
-          serverInfo: { name: 'family-router', version: '0.3.0' },
+          serverInfo: { name: 'family-router', version: '0.4.0' },
         });
         break;
 
