@@ -1,6 +1,6 @@
 {
   "name": "begin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "question": "新产品从一句短需求怎么开工，才能按家族标准长成顶级成品。",
   "family": {
     "create": "https://github.com/miounet11/build-standard",
@@ -10,12 +10,15 @@
     "review": "https://github.com/miounet11/review-harness"
   },
   "entry": [
+    "USAGE.md",
     "AGENTS.md",
     "PLAYBOOK.md",
     "FAMILY.md",
     "practices/formulate.md",
+    "templates/product-AGENTS.md",
     "templates/agent-brief.md",
     "templates/competitors.md",
-    "templates/tech-options.md"
+    "templates/tech-options.md",
+    "mcp/family-router.mjs"
   ]
 }

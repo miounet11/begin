@@ -4,6 +4,8 @@
 
 本页是开工合同。细节不在这里发明。权威表见 [FAMILY.md](./FAMILY.md)。
 
+> **如果你收到了 6 个家族链接**：忽略多余的，只从本仓开始读。日常怎么用家族见 [USAGE.md](./USAGE.md)。
+
 ---
 
 ## 先读什么
@@ -20,6 +22,8 @@
 1. owner 只给了一句短做成（或散乱笔记）→ 先跑 [practices/formulate.md](./practices/formulate.md)，产出开工包。
 2. 有 `product/README.md` 但五件事有空 → 停下来让 owner 填，或跑 formulate 帮 owner 填。
 3. 开工包齐全 → 继续。
+
+**已有产品仓？** 产品仓根目录应该有自己的 `AGENTS.md`（抄 [templates/product-AGENTS.md](./templates/product-AGENTS.md)）。打开产品仓即可，不要再贴家族链接。
 
 **不写业务代码的情况**：
 
