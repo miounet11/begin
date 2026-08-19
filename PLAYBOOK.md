@@ -2,6 +2,8 @@
 
 权威在家族仓。本页只排顺序。创建细节见 [build-standard SCHEME](https://github.com/miounet11/build-standard/blob/main/SCHEME.md)，上线判定见 [ship-standard](https://github.com/miounet11/ship-standard)。
 
+**新增**：方案制定见 [practices/formulate.md](./practices/formulate.md)。owner 给出短做成后，先跑制定流程，产出开工包，再抄模板、写代码。
+
 ---
 
 ## 需求怎么才算短
@@ -19,6 +21,25 @@
 不合格：「100% 复刻竞品，全端会员一步到位。」
 
 洞察如果要跨会话还算数，先到 [creativity-is-engineering](https://github.com/miounet11/creativity-is-engineering) 落成带稳定 id 的定律。聊天里的判断，下一会话当没说过。
+
+---
+
+## 方案制定（跑在抄模板之前）
+
+owner 只给了一句话做成（或散乱笔记）→ 跑 [practices/formulate.md](./practices/formulate.md)。
+
+制定流程产出：
+
+1. 确认做成句（现在时、可测试、用户完成的事）
+2. 列北极星 3–5 条
+3. 定主柱 3–5 根
+4. 竞品扫描（用 [templates/competitors.md](./templates/competitors.md)）
+5. 技术选型（用 [templates/tech-options.md](./templates/tech-options.md)）
+6. 填合同
+7. 填开工信
+8. 交给 owner 确认
+
+开工包齐全后，才抄模板、写代码。
 
 ---
 

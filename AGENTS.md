@@ -15,7 +15,21 @@
 | 3 | 产品仓 `product/roadmap.md` | 下一步只在哪、本季度不做啥 |
 | 4 | 需要时再打开家族仓，用 id 引用 | 不要把四本标准抄进产品仓 |
 
-打开产品仓却没有 `product/README.md`：先抄 [templates/product-README.md](./templates/product-README.md)，停下来让 owner 填五件事，再写代码。
+**打开产品仓却没有合同**：
+
+1. owner 只给了一句短做成（或散乱笔记）→ 先跑 [practices/formulate.md](./practices/formulate.md)，产出开工包。
+2. 有 `product/README.md` 但五件事有空 → 停下来让 owner 填，或跑 formulate 帮 owner 填。
+3. 开工包齐全 → 继续。
+
+**不写业务代码的情况**：
+
+- `product/README.md` 五件事有空
+- `product/roadmap.md` 北极星、本季度不做有空
+- `product/competitors.md` 不存在或未填
+- `product/tech-decision.md` 不存在或未选方案
+- `agent-brief.md` 第一轮七步计划有空
+
+合同不齐就写代码 = 「计划只活在聊天里」，禁止。
 
 ---
 
@@ -44,12 +58,14 @@
 - 密钥、token、账号写进仓库、安装包、或本页
 - 宣布已上线、关掉生产守卫、跑破坏性迁移（人拥有上线权）
 - 先堆功能 / 先商业化，再补灯
-- 计划只活在聊天里
+- 计划只活在聊天里（开工包必须在仓库，不在聊天）
+- 合同不齐就写业务代码（见上「不写业务代码的情况」）
 - 手改 `STATUS.md` 的百分比
 - 无盲测写「已超越竞品」
 - 静默绕过门禁。过不了就写 `product/waivers.md`（到期日 + owner）
 - 把 build / ship / creativity / ability / review 的正文复制进产品仓
 - 为「对标」去复刻受版权保护的词曲、旋律、或他人代码
+- 竞品扫描变成复刻清单（「竞品有所以我们做」）
 
 ---
 

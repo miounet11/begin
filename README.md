@@ -14,6 +14,7 @@
 | [AGENTS.md](./AGENTS.md) | 执行面（Agent / TUI / CLI）必读：准做什么、禁做什么、做成怎么认 |
 | [PLAYBOOK.md](./PLAYBOOK.md) | 短需求 → L0 → L3 的顺序 |
 | [FAMILY.md](./FAMILY.md) | 一问一仓。禁止把四本标准抄进产品仓 |
+| [practices/formulate.md](./practices/formulate.md) | 方案制定：owner 给短做成 → 产出填好的合同 |
 | [templates/](./templates/) | 可复制进产品仓的空合同与开工信 |
 | [product/](./product/) | 本仓自己的空合同（示范，不是某个产品） |
 
@@ -22,10 +23,16 @@
 ## 30 秒开工
 
 1. 读 [AGENTS.md](./AGENTS.md)。
-2. 把 [templates/](./templates/) 抄进产品仓的 `product/`。
-3. 填五件事：一句话做成、北极星 3–5 条、主柱 3–5 根、本季度不做、级别 `L0` + 升级到期日。
-4. 把填好的 `product/README.md` 和 [templates/agent-brief.md](./templates/agent-brief.md) 发给执行面。
+2. owner 给出一句话做成 → 跑 [practices/formulate.md](./practices/formulate.md)，产出开工包。
+3. 把 [templates/](./templates/) 抄进产品仓的 `product/`，用开工包填：
+   - `product/README.md`：一句话做成、北极星、主柱、级别
+   - `product/roadmap.md`：里程碑、本季度不做
+   - `product/competitors.md`：竞品扫描结论
+   - `product/tech-decision.md`：技术方案结论
+4. 填好 [templates/agent-brief.md](./templates/agent-brief.md)，发给执行面。
 5. 下一笔非平凡改动走七步。第一笔提交必须是红的。
+
+**没有开工包，不写业务代码。**
 
 完整顺序在 [PLAYBOOK.md](./PLAYBOOK.md)。家族权威在 [FAMILY.md](./FAMILY.md)。
 
