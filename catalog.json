@@ -1,0 +1,13 @@
+{
+  "name": "begin",
+  "version": "0.1.0",
+  "question": "新产品从一句短需求怎么开工，才能按家族标准长成顶级成品。",
+  "family": {
+    "create": "https://github.com/miounet11/build-standard",
+    "ship": "https://github.com/miounet11/ship-standard",
+    "create_law": "https://github.com/miounet11/creativity-is-engineering",
+    "ability": "https://github.com/miounet11/ability-harness",
+    "review": "https://github.com/miounet11/review-harness"
+  },
+  "entry": ["AGENTS.md", "PLAYBOOK.md", "FAMILY.md", "templates/agent-brief.md"]
+}
